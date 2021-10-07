@@ -4,8 +4,17 @@ const cors = require('cors');
 const app = express();
 const words = Object.keys(require('./words_dictionary.json'));
 
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+);
+
 app.get('/', function (req, res) {
-    const filteredWords = words.filter(e => e.indexOf(req.query.q) === 0);
+    const filteredWords = words
+        .filter(e => e.indexOf(req.query.q) === 0)
+        .splice(0,10);
     res.json(filteredWords);
 })
 
