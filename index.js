@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const words = Object.keys(require('./words_dictionary.json'));
+// const words = Object(require('./test_dictionary.json'));
 
 app.use(
     cors({
@@ -10,6 +11,13 @@ app.use(
         origin: true
     })
 );
+
+// app.get('/', function (req, res) {
+//     const filteredWords = words
+//         .filter(e => e.name.indexOf(req.query.q) === 0)
+//         .splice(0,10);
+//     res.json(filteredWords);
+// })
 
 app.get('/', function (req, res) {
     const filteredWords = words
